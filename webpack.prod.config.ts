@@ -4,12 +4,17 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import ESLintPlugin from "eslint-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
+import TerserPlugin from "terser-webpack-plugin";
+import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 
 const config: webpack.Configuration = {
-  mode: "development",
+  mode: "production",
   entry: path.join(__dirname, "src", "index.tsx"),
   output: {
     publicPath: "/",
+    path: path.resolve(__dirname, "build"),
+    filename: "[name].[contenthash].js",
   },
   module: {
     rules: [
@@ -40,11 +45,19 @@ const config: webpack.Configuration = {
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
   },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        parallel: true,
+      }),
+      new CssMinimizerPlugin(),
+    ],
+  },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, "src", "index.html"),
+      template: "src/index.html",
     }),
-    new webpack.HotModuleReplacementPlugin(),
     new ForkTsCheckerWebpackPlugin({
       async: false,
       eslint: {
@@ -53,19 +66,13 @@ const config: webpack.Configuration = {
     }),
     new ESLintPlugin({
       extensions: ["js", "jsx", "ts", "tsx"],
+      failOnError: true,
     }),
     new MiniCssExtractPlugin({
       filename: "[name].[contenthash].css",
     }),
+    new CleanWebpackPlugin(),
   ],
-  devtool: "inline-source-map",
-  devServer: {
-    contentBase: path.join(__dirname, "build"),
-    historyApiFallback: true,
-    port: 9000,
-    open: true,
-    hot: true,
-  },
 };
 
 export default config;
