@@ -1,4 +1,42 @@
+:root {
+  --color-base-black:     #000000;
+  --color-base-white:     #ffffff;
+  --color-base-success:   #00BF32;
+  --color-base-error:     #FF1E00;
+
+  --color-primary:        #003333;
+  --color-primary-bg:     #dfeffd;
+
+  --color-secondary:      #260205;
+
+  --color-accent-pink:    #bf4e6d;
+  --color-accent-grey:    #3e4459;
+
+  --shadow-ligth:         #00000026;
+  --shadow-dark:          #2602053d;
+}
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background-color: var(--color-primary-bg);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 8px 0;
+}
+
+p {
+  margin: 0;
+}
+
 .app-heading {
-  color: red;
+  color: var(--color-accent-pink);
+  text-shadow: 0 2px 4px var(--color-base-white);
   text-align: center;
 }
