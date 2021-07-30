@@ -1,6 +1,6 @@
 import React from "react";
 import {FaSearch} from "react-icons/fa";
-import {SearchProps} from "../../types/searchProps";
+import {SearchProps} from "../../types/search-props";
 
 import "./style.scss";
 

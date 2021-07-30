@@ -9,7 +9,6 @@
   transform: translate(-50%, -50%);
   background: var(--color-base-white);
   transition: all 0.3s ease;
-
   &:focus {
     box-shadow: 0 3px 4px var(--shadow-dark);
   }
@@ -20,8 +19,8 @@
   top: 7px;
   left: 45px;
   font-size: 14px;
-  background:  var(--color-base-white);
-  color:  var(--color-accent-grey);
+  background: var(--color-base-white);
+  color: var(--color-accent-grey);
   width: 285px;
   height: 25px;
   border: none;

@@ -1,25 +1,30 @@
 :root {
-  --color-base-black:     #000000;
-  --color-base-white:     #ffffff;
-  --color-base-success:   #00BF32;
-  --color-base-error:     #FF1E00;
+  --color-base-black: #000000;
+  --color-base-white: #ffffff;
+  --color-base-success: #00bf32;
+  --color-base-error: #ff1e00;
 
-  --color-primary:        #003333;
-  --color-primary-bg:     #dfeffd;
+  --color-primary: #25258d;
+  --color-primary-bg: #dfeffd;
 
-  --color-secondary:      #260205;
+  --color-secondary: #260205;
+  --color-secondary-bg: #f2f6f8;
 
-  --color-accent-pink:    #bf4e6d;
-  --color-accent-grey:    #3e4459;
+  --color-accent-pink: #bf4e6d;
+  --color-accent-grey: #3e4459;
 
-  --shadow-ligth:         #00000026;
-  --shadow-dark:          #2602053d;
+  --shadow-ligth: #00000026;
+  --shadow-dark: #26020588;
 }
 
-html, body { height: 100%; }
+html,
+body {
+  height: 100%;
+}
 body {
   margin: 0;
   background-color: var(--color-primary-bg);
+  font-family: -apple-system, BlinkMacSystemFont, 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 h1,
