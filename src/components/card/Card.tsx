@@ -1,6 +1,6 @@
 import React from "react";
-import {CardItem} from "../../types/card-item";
-import {DEFAULT_TAGS} from "../../shared/constansts/default-tags";
+import {CardItem} from "../../core/types/card-item";
+import {DEFAULT_TAGS} from "../../shared/constants/default-tags";
 import {Statistics} from "./Statistics";
 import "./style.scss";
 
@@ -9,7 +9,7 @@ interface DataItem extends CardItem {
 }
 
 function convertArrayTags(tags: string[]): string[] {
-  const convertArray: string[] = ["react"];
+  const convertArray: string[] = ["video"];
   tags.forEach((tag: string) => {
     if (DEFAULT_TAGS.includes(tag)) {
       convertArray.push(tag);
@@ -28,7 +28,7 @@ export const Card: React.FC<DataItem> = ({snippet, statistics, video}) => {
       <section className="card_header">
         <img
           className="card_img"
-          src={snippet.thumbnails.medium.url}
+          src={snippet.thumbnails.medium?.url}
           alt="Pic"
         />
         <div className="card_author">

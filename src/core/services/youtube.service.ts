@@ -1,6 +1,7 @@
 import {CardItem} from "../types/card-item";
 import {ISearchResponse} from "../types/search-response";
-import {IVideoResponse, VideoResponse} from "../types/video-response";
+import {IVideoResponse} from "../types/video-response";
+// import {setStateMessage} from "../../components/content/Content";
 import {youtube} from "../api";
 
 const API_KEY = "AIzaSyCVCxa3H8DCDz6LmdJDCvGbu4FcY8ErFm4";
@@ -23,35 +24,36 @@ const getListResultsById = async (
   return youtube.get(url);
 };
 
-const exactIdsFromListResults = (searchList: VideoResponse): string[] => {
-  return searchList.items.map((item) => item.id?.videoId);
-};
-
 export const getListResults = async (
   query: string,
   order: string,
   maxResults: number,
   pageToken?: string
 ): Promise<CardItem[]> => {
-  let cards: CardItem[] = [];
   try {
-    await getListResultsByQuery(query, order, maxResults, pageToken).then(
-      (response) => {
-        const searchList = response.data;
-        const arrayIds = exactIdsFromListResults(searchList);
+    let cards: CardItem[] = [];
+    const response = await getListResultsByQuery(
+      query,
+      order,
+      maxResults,
+      pageToken
+    );
+    const searchList = response.data;
+    await Promise.all(
+      searchList.items.map(async (item) => {
         try {
-          getListResultsById(arrayIds).then((videos) => {
-            cards = {...videos.data.items};
-            console.log(cards);
-          });
+          const result = await getListResultsById([item.id?.videoId]);
+          if (result.data) {
+            cards = [...cards, ...result.data.items];
+          }
         } catch (errors) {
-          console.error(errors.message);
+          // setStateMessage(errors.message, "error");
         }
-      }
+      })
     );
     return cards;
   } catch (errors) {
-    console.error(errors.message);
+    // setStateMessage(errors.message, "error");
     return [];
   }
 };
