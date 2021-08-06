@@ -28,6 +28,7 @@
   "homepage": "https://github.com/kastrubait/react-2021q3-tasks#readme",
   "dependencies": {
     "@types/webpack": "^4.41.30",
+    "axios": "^0.21.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0"
