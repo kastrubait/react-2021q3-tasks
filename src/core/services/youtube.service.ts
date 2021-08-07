@@ -1,10 +1,10 @@
 import {CardItem} from "../types/card-item";
-import {ISearchResponse} from "../types/search-response";
+import {VideosList, ISearchResponse} from "../types/search-response";
 import {IVideoResponse} from "../types/video-response";
 // import {setStateMessage} from "../../components/content/Content";
 import {youtube} from "../api";
 
-const API_KEY = "AIzaSyCVCxa3H8DCDz6LmdJDCvGbu4FcY8ErFm4";
+const API_KEY = "AIzaSyCC0CTtmSqog5piI1lLEW8BHYsKQcywI7I";
 
 const getListResultsByQuery = async (
   query: string,
@@ -29,9 +29,10 @@ export const getListResults = async (
   order: string,
   maxResults: number,
   pageToken?: string
-): Promise<CardItem[]> => {
+): Promise<VideosList | null> => {
   try {
     let cards: CardItem[] = [];
+    let videos: VideosList;
     const response = await getListResultsByQuery(
       query,
       order,
@@ -39,21 +40,24 @@ export const getListResults = async (
       pageToken
     );
     const searchList = response.data;
+    const {prevPageToken, nextPageToken, pageInfo} = response.data;
+    videos = {prevPageToken, nextPageToken, pageInfo, items: cards};
     await Promise.all(
       searchList.items.map(async (item) => {
         try {
           const result = await getListResultsById([item.id?.videoId]);
           if (result.data) {
             cards = [...cards, ...result.data.items];
+            videos = {...videos, items: cards};
           }
         } catch (errors) {
           // setStateMessage(errors.message, "error");
         }
       })
     );
-    return cards;
+    return videos;
   } catch (errors) {
     // setStateMessage(errors.message, "error");
-    return [];
+    return null;
   }
 };

@@ -3,6 +3,7 @@ import {VideoItem} from "./video-item";
 export interface VideoResponse {
   kind: string;
   etag: string;
+  prevPageToken: string;
   nextPageToken: string;
   regionCode: string;
   pageInfo: {
