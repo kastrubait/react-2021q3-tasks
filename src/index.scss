@@ -13,7 +13,7 @@
   --color-accent-pink: #bf4e6d;
   --color-accent-grey: #3e4459;
 
-  --shadow-ligth: #00000026;
+  --shadow-light: #00000026;
   --shadow-dark: #26020588;
 }
 
@@ -24,7 +24,8 @@ body {
 body {
   margin: 0;
   background-color: var(--color-primary-bg);
-  font-family: -apple-system, BlinkMacSystemFont, 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Trebuchet MS",
+    "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
 
 h1,
