@@ -5,7 +5,7 @@
   width: 350px;
   height: 40px;
   border-radius: 40px;
-  box-shadow: 0 6px 8px var(--shadow-ligth);
+  box-shadow: 0 6px 8px var(--shadow-light);
   transform: translate(-50%, -50%);
   background: var(--color-base-white);
   transition: all 0.3s ease;
@@ -50,3 +50,69 @@
   width: 1.7em;
   height: 1.7em;
 }
+
+.radio-toolbar {
+  width: 24em;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--color-accent-pink);
+}
+
+.select {
+  width: 17em;
+  margin-top: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--color-primary);
+}
+
+.select p{
+  text-align: center;
+}
+.select button, 
+.select input {
+  margin: 0 5px;
+  outline: none;
+  background-color: var(--color-primary);
+  color: var(--color-base-white);
+  border-radius: 4px;
+  box-shadow: 0 6px 8px var(--shadow-light);
+  &:hover {
+    color: var(--color-accent-pink);
+    cursor: pointer;
+  }
+}
+
+.select button:hover, 
+.select input:hover {
+  background-color: var(--color-secondary-bg);
+  color: var(--color-accent-pink);
+  border-color: var(--color-secondary-bg);;
+  box-shadow: 0 6px 8px var(--shadow-light);
+  cursor: pointer;
+}
+
+.select button:disabled {
+  color: red;
+}
+
+select {
+  margin: 0 .5em;
+}
+
+.radio-toolbar label {
+  display: inline-block;
+  background-color: var(--color-primary-bg);
+  color: var(--color-accent-grey);
+  padding: 5px 15px;
+  margin: 0 5px;
+  font-size: 14px;
+  border-radius: 40px;
+  box-shadow: 0 6px 8px var(--shadow-light);
+}
+
+.radio-toolbar label:hover {
+  background-color: var(--color-base-white);
+  color: var(--color-accent-pink);
+}
+
