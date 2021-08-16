@@ -4,7 +4,7 @@ import {Link, useHistory} from "react-router-dom";
 import picture from "../../assets/img/picture.jpeg";
 import "./style.scss";
 
-export const Header = () => {
+export const Header: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const history = useHistory();
 
@@ -14,16 +14,14 @@ export const Header = () => {
       <img src={picture} alt="rocket" className="center-img" />
       <nav className="navigation__container">
         <div className="navigation__link">
-          {/* <Link className="nav-link" to="/">
+          <Link className="nav-link" to="/">
             Home
-          </Link> */}
-          Home
+          </Link>
         </div>
         <div className="navigation__link">
-          {/* <Link className="nav-link" to="/about">
+          <Link className="nav-link" to="/about">
             About
-          </Link> */}
-          About
+          </Link>
         </div>
       </nav>
     </header>

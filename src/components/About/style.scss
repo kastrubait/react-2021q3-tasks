@@ -1,0 +1,10 @@
+.about-content {
+    display: flex;
+    justify-content: center;
+    color: var(--color-primary);
+    text-align: center;
+  }
+.about-content p {
+  width: 80%;
+  margin: 10px auto;
+}
