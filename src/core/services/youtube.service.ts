@@ -16,7 +16,7 @@ const getListResultsByQuery = async (
   return youtube.get(url);
 };
 
-const getListResultsById = async (
+export const getListResultsById = async (
   arrayIds: string[]
 ): Promise<ISearchResponse> => {
   const listIds: string = arrayIds.join(",");
