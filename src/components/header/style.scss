@@ -19,7 +19,7 @@
   padding: 8px 0;
 }
 
-.navigation__container div {
+.navigation_link {
   padding: 10px;
   margin-top: 10px;
   text-decoration: none;
@@ -32,15 +32,20 @@
   display: block;
 }
 
-.navigation__container div:hover {
+.navigation_link:hover {
   color: var(--color-accent-pink);
   box-shadow: 0 6px 8px var(--color-primary-bg);
   cursor: pointer;
 }
 
-.navigation__container div:active {
+.navigation_link:active {
   color: var(--color-accent-pink);
   box-shadow: 0 6px 8px var(--color-primary-bg);
   border: 1px solid var(--color-accent-pink);
+  cursor: pointer;
+}
+
+.link__active {
+  color: var(--color-accent-pink);
   cursor: pointer;
 }

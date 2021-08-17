@@ -1,11 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import {Link, useHistory} from "react-router-dom";
+import {NavLink, useHistory} from "react-router-dom";
 import picture from "../../assets/img/picture.jpeg";
 import "./style.scss";
 
 export const Header: React.FC = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const history = useHistory();
 
   return (
@@ -13,16 +12,21 @@ export const Header: React.FC = () => {
       <h1 className="app-heading">React and TypeScript App!</h1>
       <img src={picture} alt="rocket" className="center-img" />
       <nav className="navigation__container">
-        <div className="navigation__link">
-          <Link className="nav-link" to="/">
-            Home
-          </Link>
-        </div>
-        <div className="navigation__link">
-          <Link className="nav-link" to="/about">
-            About
-          </Link>
-        </div>
+        <NavLink
+          className="navigation_link"
+          activeClassName="link__active"
+          to="/"
+        >
+          Home
+        </NavLink>
+
+        <NavLink
+          className="navigation_link"
+          activeClassName="link__active"
+          to="/about"
+        >
+          About
+        </NavLink>
       </nav>
     </header>
   );
