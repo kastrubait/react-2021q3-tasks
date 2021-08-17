@@ -4,6 +4,7 @@ import {TransitionGroup, CSSTransition} from "react-transition-group";
 import {About} from "./components/about/About";
 import {Content} from "./components/content/Content";
 import {Header} from "./components/header/Header";
+import {NotFound} from "./components/NotFound.tsx/NotFount";
 
 const App: React.FC = () => {
   const location = useLocation();
@@ -19,6 +20,10 @@ const App: React.FC = () => {
             <Route exact path="/about">
               <About />
             </Route>
+            <Route path="/error">
+              <NotFound />
+            </Route>
+            <Redirect to="/error" />
           </Switch>
         </div>
       </CSSTransition>
