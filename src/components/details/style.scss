@@ -3,11 +3,11 @@
   text-align: center;
 }
 
-p {
+p.detail_article {
   padding: 5px 50px;
 }
 
-p > span {
+p.detail_article > span {
   font-size: 18px;
   color: var(--color-primary);
 }

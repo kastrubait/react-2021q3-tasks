@@ -23,7 +23,6 @@ export const Details: React.FC = () => {
       try {
         await getListResultsById([params.id]).then((response) => {
           if (response) {
-            console.log(response);
             setVideoInfo(response.data.items);
           }
         });
@@ -38,7 +37,7 @@ export const Details: React.FC = () => {
       }
     }
     fetchData();
-  }, []);
+  }, [params.id]);
 
   return (
     <>
@@ -47,23 +46,23 @@ export const Details: React.FC = () => {
           <h4 className="detail_header">
             Details about video with Id = {item.id}
           </h4>
-          <p>
+          <p className="detail_article">
             <strong>channelTitle: </strong>
             <span>{item.snippet.channelTitle}</span>
           </p>
-          <p>
+          <p className="detail_article">
             <strong>title: </strong>
             <span>{item.snippet.title}</span>
           </p>
-          <p>
+          <p className="detail_article">
             <strong>published: </strong>
             <span>{item.snippet.publishedAt}</span>
           </p>
-          <p>
+          <p className="detail_article">
             <strong>thumbnailsUrl: </strong>{" "}
             <span>{item.snippet.thumbnails.default?.url}</span>
           </p>
-          <p>
+          <p className="detail_article">
             <strong>description: </strong>{" "}
             <span>
               {item.snippet.description
@@ -71,7 +70,7 @@ export const Details: React.FC = () => {
                 : "no description"}
             </span>
           </p>
-          <p>
+          <p className="detail_article">
             <strong>defaultLanguage: </strong>{" "}
             <span>
               {item.snippet.defaultAudioLanguage
@@ -79,15 +78,15 @@ export const Details: React.FC = () => {
                 : "-"}
             </span>
           </p>
-          <p>
+          <p className="detail_article">
             <strong>viewCount: </strong>
             <span>{item.statistics.viewCount}</span>
           </p>
-          <p>
+          <p className="detail_article">
             <strong>likeCount: </strong>
             <span>{item.statistics.likeCount}</span>
           </p>
-          <p>
+          <p className="detail_article">
             <strong>dislikeCount: </strong>{" "}
             <span>{item.statistics.dislikeCount}</span>
           </p>
