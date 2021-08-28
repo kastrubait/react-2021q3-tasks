@@ -1,6 +1,6 @@
 import React from "react";
 import {FaEye, FaComment} from "react-icons/fa";
-import {Statistic} from "../../types/card-item";
+import {Statistic} from "../../core/types/statistics";
 import "./style.scss";
 
 export const Statistics: React.FC<Statistic> = ({viewCount, commentCount}) => {

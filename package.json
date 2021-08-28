@@ -28,6 +28,7 @@
   "homepage": "https://github.com/kastrubait/react-2021q3-tasks#readme",
   "dependencies": {
     "@types/webpack": "^4.41.30",
+    "axios": "^0.21.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0"
@@ -62,7 +63,9 @@
     "husky": "^7.0.1",
     "lint-staged": "^11.1.0",
     "mini-css-extract-plugin": "^2.1.0",
+    "node-sass": "^6.0.1",
     "prettier": "^2.3.2",
+    "sass-loader": "^12.1.0",
     "style-loader": "^3.2.1",
     "ts-node": "^10.1.0",
     "typescript": "^4.3.5",

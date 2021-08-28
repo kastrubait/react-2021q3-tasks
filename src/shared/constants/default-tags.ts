@@ -8,4 +8,5 @@ export const DEFAULT_TAGS: string[] = [
   "lesson",
   "online",
   "web",
+  "video",
 ];
