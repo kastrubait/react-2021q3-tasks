@@ -1,4 +1,47 @@
+:root {
+  --color-base-black: #000000;
+  --color-base-white: #ffffff;
+  --color-base-success: #00bf32;
+  --color-base-error: #ff1e00;
+
+  --color-primary: #25258d;
+  --color-primary-bg: #dfeffd;
+
+  --color-secondary: #260205;
+  --color-secondary-bg: #f2f6f8;
+
+  --color-accent-pink: #bf4e6d;
+  --color-accent-grey: #3e4459;
+
+  --shadow-ligth: #00000026;
+  --shadow-dark: #26020588;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  background-color: var(--color-primary-bg);
+  font-family: -apple-system, BlinkMacSystemFont, 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 8px 0;
+}
+
+p {
+  margin: 0;
+}
+
 .app-heading {
-  color: red;
+  color: var(--color-accent-pink);
+  text-shadow: 0 2px 4px var(--color-base-white);
   text-align: center;
 }

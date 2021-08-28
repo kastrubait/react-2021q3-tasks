@@ -4,9 +4,7 @@ import {Content} from "./components/content/Content";
 const App: React.FC<Record<string, never>> = () => {
   return (
     <>
-      <h1 className="app-heading">
-        {new Date().toLocaleDateString()} React and TypeScript App!
-      </h1>
+      <h1 className="app-heading">React and TypeScript App!</h1>
       <Content />
     </>
   );
