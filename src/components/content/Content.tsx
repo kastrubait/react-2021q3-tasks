@@ -1,40 +1,43 @@
-import React, {ChangeEvent, useState, SyntheticEvent} from "react";
+import React, {ChangeEvent, SyntheticEvent} from "react";
+import {useDispatch} from "react-redux";
 import {SearchBar} from "../search-bar/SearchBar";
 import {CardsList} from "../cards-list/CardsList";
-import {CardItem} from "../../core/types/card-item";
-import {getListResults} from "../../core/services/youtube.service";
-import {InfoMessage} from "../../core/types/infoMessage";
 import {SortType} from "../../core/types/sort-type";
+import {getListResults} from "../../core/services/youtube.service";
 import {Message} from "../message/Message";
 import {Preloader} from "../preloader/preloader";
 import "./style.scss";
+import {
+  setMaxResults,
+  setPage,
+  setSearchTerm,
+  setSortBy,
+  setVideos,
+} from "../../store/actions/appAction";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {VideoActionTypes} from "../../store/types";
 
 export const Content: React.FC<unknown> = () => {
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const [maxResults, setMaxResults] = useState<string>("15");
-  const [sortBy, setSortBy] = useState<SortType>(SortType.rating);
-  const [totalPages, setTotalPages] = useState<number>(0);
-  const [page, setPage] = useState<number[]>([1, 1]);
-  const [videos, setVideos] = useState<CardItem[]>([]);
-  const [arrayPageTokens, setArrayPageTokens] = useState<string[]>(["", ""]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [message, setMessage] = useState<InfoMessage>({
-    show: false,
-    text: "",
-    type: "message",
-  });
-
-  const setStateMessage = (show: boolean, text: string, type: string): void => {
-    setMessage({
-      show,
-      text,
-      type,
-    });
-  };
+  const {
+    searchTerm,
+    page,
+    maxResults,
+    sortBy,
+    totalPages,
+    isLoading,
+    arrayPageTokens,
+    message,
+    videos,
+  } = useTypedSelector((state) => state.video);
+  // const {getNextPageData} = useActions();
+  const dispatch = useDispatch();
 
   const getNextPageData = async (): Promise<void> => {
     if (searchTerm) {
-      setIsLoading(true);
+      dispatch({
+        type: VideoActionTypes.SET_IS_LOADING,
+        payload: true,
+      });
       try {
         await getListResults(
           searchTerm,
@@ -43,41 +46,57 @@ export const Content: React.FC<unknown> = () => {
           arrayPageTokens[page[0]]
         ).then((response) => {
           if (response) {
-            setArrayPageTokens([
-              response?.prevPageToken ?? "",
-              response?.nextPageToken ?? "",
-            ]);
+            dispatch({
+              type: VideoActionTypes.SET_PAGES_TOKEN,
+              payload: [
+                response?.prevPageToken ?? "",
+                response?.nextPageToken ?? "",
+              ],
+            });
             const {totalResults, resultsPerPage} = response?.pageInfo;
-            setTotalPages(Math.ceil(totalResults / resultsPerPage));
-            setVideos(response?.items);
+            dispatch({
+              type: VideoActionTypes.SET_TOTAL_PAGES,
+              payload: Math.ceil(totalResults / resultsPerPage),
+            });
+            dispatch(setVideos(response?.items));
           }
         });
       } catch (errors) {
-        setStateMessage(true, errors.message, "error");
+        dispatch({
+          type: VideoActionTypes.FETCH_VIDEOS_ERROR,
+          payload: {
+            show: true,
+            text: errors.message,
+            type: "error",
+          },
+        });
       } finally {
-        setIsLoading(false);
+        dispatch({
+          type: VideoActionTypes.SET_IS_LOADING,
+          payload: false,
+        });
       }
     }
   };
 
   const onSearchTermChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
+    dispatch(setSearchTerm(e.target.value));
     if (!searchTerm) setVideos([]);
   };
 
   const onMaxResultsChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setMaxResults(e.target.value);
+    dispatch(setMaxResults(e.target.value));
   };
 
   const onSortOptionsChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSortBy(e.target.value as SortType);
+    dispatch(setSortBy(e.target.value as SortType));
     getNextPageData();
   };
 
   const prevPageChange = (e: SyntheticEvent) => {
     e.preventDefault();
     if (arrayPageTokens[0]) {
-      setPage([0, page[1] - 1]);
+      dispatch(setPage([0, page[1] - 1]));
       getNextPageData();
     }
   };
@@ -85,7 +104,7 @@ export const Content: React.FC<unknown> = () => {
   const nextPageChange = (e: SyntheticEvent) => {
     e.preventDefault();
     if (arrayPageTokens[1]) {
-      setPage([1, page[1] + 1]);
+      dispatch(setPage([1, page[1] + 1]));
       getNextPageData();
     }
   };
