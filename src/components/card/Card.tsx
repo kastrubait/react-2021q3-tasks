@@ -1,4 +1,5 @@
 import React from "react";
+import {useHistory} from "react-router-dom";
 import {CardItem} from "../../core/types/card-item";
 import {DEFAULT_TAGS} from "../../shared/constants/default-tags";
 import {Statistics} from "./Statistics";
@@ -23,8 +24,16 @@ export const Card: React.FC<DataItem> = ({snippet, statistics, video}) => {
   const publishedDate = new Date(`${snippet.publishedAt}`).toLocaleDateString(
     "zh-Hans-CN"
   );
+  const router = useHistory();
+  const clickHandler = () => router.push(`/details/${video}`);
   return (
-    <div className="card_container">
+    <div
+      role="button"
+      tabIndex={0}
+      className="card_container"
+      onClick={clickHandler}
+      onKeyDown={clickHandler}
+    >
       <section className="card_header">
         <img
           className="card_img"

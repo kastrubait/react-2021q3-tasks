@@ -1,5 +1,4 @@
 import React, {ChangeEvent, useState, SyntheticEvent} from "react";
-import picture from "../../assets/img/picture.jpeg";
 import {SearchBar} from "../search-bar/SearchBar";
 import {CardsList} from "../cards-list/CardsList";
 import {CardItem} from "../../core/types/card-item";
@@ -98,7 +97,6 @@ export const Content: React.FC<unknown> = () => {
 
   return (
     <div>
-      <img src={picture} alt="rocket" className="center-img" />
       <SearchBar
         placeholder="Search..."
         searchTerm={searchTerm}

@@ -1,0 +1,13 @@
+.detail_header {
+  color: var(--color-accent-pink);
+  text-align: center;
+}
+
+p.detail_article {
+  padding: 5px 50px;
+}
+
+p.detail_article > span {
+  font-size: 18px;
+  color: var(--color-primary);
+}
